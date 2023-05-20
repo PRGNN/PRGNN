@@ -1,7 +1,8 @@
 # PRGNN
 
 This repository is the official implementation of *Probabilistic Graphical Model for Robust Graph Neural Networks against Noisy Labels*.
-<!-- ![The proposed framework](./PRGNN.png) -->
+
+![The proposed framework](./PRGNN.png)
 
 ## Setup
 
