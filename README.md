@@ -28,10 +28,6 @@ pip install -r requirements.txt
 ```
 ## Usage
 
-Some files in the './data' cannot be uploaded because they are over 25MB. All the data files we store in url：
-url: https://pan.baidu.com/s/11CdXUexduqDExoiT0YgBDA  
-pwd: e8p4
-
 An example of training PRGNN-v1:
 ```
 python PRGNN_v1.py --dataset cora --noise_type flip --ptb 0.8
