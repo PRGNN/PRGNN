@@ -28,11 +28,11 @@ pip install -r requirements.txt
 ```
 ## Usage
 
-train PRGNN-v1
+An example of training PRGNN-v1:
 ```
-python PRGNN-v1.py --dataset cora --noise_type flip --ptb 0.8
+python PRGNN_v1.py --dataset cora --noise_type flip --ptb 0.8
 ```
-train PRGNN-v2
+An example of training PRGNN-v2:
 ```
-python PRGNN-v2.py --dataset cora --noise_type flip --ptb 0.8
+python PRGNN_v2.py --dataset chameleon --noise_type uniform --ptb 0.8
 ```
