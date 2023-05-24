@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 import scipy.sparse as sparse
-import graphlearning as gl
 import math
 from torch.nn.parameter import Parameter
 from torch.nn.modules.module import Module
