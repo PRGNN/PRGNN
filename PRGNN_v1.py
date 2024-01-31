@@ -9,7 +9,7 @@ import itertools
 import scipy.io as scio
 import sys
 import copy
-from utils import kl_categorical, contrastive_loss
+from utils import kl_categorical
 from noise_utils import uniform_mix_C, flip_labels_C
 from sklearn.metrics.pairwise import cosine_similarity
 from load_heter import load_data, create_clean
@@ -145,7 +145,6 @@ def main(args):
         loss = loss + args.beta * criterion(z1[idx_train], noise_labels[idx_train].to(device).long()).mean()
         loss = loss + F.nll_loss(F.log_softmax(y[idx_clean], dim=1), noise_labels[idx_clean].to(device).long())
         loss = loss + kl_categorical(z1[idx_val_test], z2[idx_val_test])
-        loss = loss + args.alpha * contrastive_loss(F.softmax(z2[idx_val_test], dim=1), F.softmax(z1[idx_val_test], dim=1))
 
         loss.backward()
         optimizer.step()
@@ -192,7 +191,6 @@ if __name__ == "__main__":
     args.add_argument('--threshold',type=float,default=0.7)
     args.add_argument('--eta',type=float,default=0.01)
     args.add_argument('--beta',type=float,default=1)
-    args.add_argument('--alpha',type=float,default=1)
     args = args.parse_args()
     # result = main(args)
     # print(result)
