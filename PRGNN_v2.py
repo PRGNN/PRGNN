@@ -9,7 +9,7 @@ import scipy.io as scio
 import sys
 import copy
 from model.Model_v2 import GCN, H2GCN
-from utils import kl_categorical, contrastive_loss, nor
+from utils import kl_categorical, nor
 from noise_utils import uniform_mix_C, flip_labels_C
 from sklearn.metrics.pairwise import cosine_similarity
 from load_heter import load_data, create_clean
@@ -153,7 +153,6 @@ def main(args):
         loss = loss + args.beta * F.nll_loss(F.log_softmax(y1[idx_clean], dim=1), noise_labels[idx_clean].to(device).long())
         loss = loss + F.nll_loss(F.log_softmax(Ly[idx_clean], dim=1), noise_labels[idx_clean].to(device).long()) 
         loss = loss + kl_categorical(y2[idx_val_test], y1[idx_val_test])
-        loss = loss + args.alpha * contrastive_loss(F.softmax(y1[idx_val_test], dim=1), F.softmax(y2[idx_val_test], dim=1))
 
         loss.backward()
         optimizer.step()
@@ -200,7 +199,6 @@ if __name__ == "__main__":
     args.add_argument('--threshold',type=float,default=0.7)
     args.add_argument('--eta',type=float,default=0.1)
     args.add_argument('--beta',type=float,default=5)
-    args.add_argument('--alpha',type=float,default=0.5)
     args = args.parse_args()
 
     print(args)
